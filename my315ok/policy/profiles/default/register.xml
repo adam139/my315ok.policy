@@ -1,0 +1,51 @@
+<registry>
+	<records interface="Products.CMFPlone.interfaces.ISecuritySchema" prefix="plone">
+    <value key="enable_self_reg">False</value>         
+	</records>
+	
+	<records interface="Products.CMFPlone.interfaces.controlpanel.ISecuritySchema" prefix="plone">
+    <value key="enable_user_folders">False</value>        
+	</records>
+
+		
+  <record name="plone.app.theming.interfaces.IThemeSettings.absolutePrefix" interface="plone.app.theming.interfaces.IThemeSettings" field="absolutePrefix">
+    <field type="plone.registry.field.TextLine">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="convert_relative_url">Convert relative URLs in the theme file to absolute paths using this prefix.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="absolute_url_prefix">Absolute URL prefix</title>
+    </field>
+    <value>/++theme++315ok.theme</value>
+  </record>
+  <record name="plone.app.theming.interfaces.IThemeSettings.currentTheme" interface="plone.app.theming.interfaces.IThemeSettings" field="currentTheme">
+    <field type="plone.registry.field.TextLine">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="current_theme_description">The name of the current theme, i.e. the one applied most recently.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="current_theme">Current theme</title>
+    </field>
+    <value>315ok.theme</value>
+  </record>
+  <record name="plone.app.theming.interfaces.IThemeSettings.doctype" interface="plone.app.theming.interfaces.IThemeSettings" field="doctype">
+    <field type="plone.registry.field.ASCIILine">
+      <default></default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="doctype_description">You can specify a Doctype string which will be set on the output, for example "&lt;!DOCTYPE html&gt;". If left blank the default XHTML 1.0 transitional Doctype or that set in the Diazo theme is used.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="doctype">Doctype</title>
+    </field>
+    <value>&lt;!DOCTYPE html&gt;</value>
+  </record>
+  <record name="plone.app.theming.interfaces.IThemeSettings.enabled" interface="plone.app.theming.interfaces.IThemeSettings" field="enabled">
+    <field type="plone.registry.field.Bool">
+      <default>False</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="enable_theme_globally">Use this option to enable or disable the theme globally. Note that the options will also affect whether the theme is used when this option is enabled.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="enabled">Enabled</title>
+    </field>
+    <value>True</value>
+  </record>
+  <record name="plone.app.theming.interfaces.IThemeSettings.rules" interface="plone.app.theming.interfaces.IThemeSettings" field="rules">
+    <field type="plone.registry.field.TextLine">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="rules_file_path">File path to the rules file</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="rules_file">Rules file</title>
+    </field>
+    <value>/++theme++315ok.theme/rules.xml</value>
+  </record>
+</registry>
