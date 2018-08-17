@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"      
+      i18n:domain="qidejt.policy">        
+<head>
+<metal:override fill-slot="top_slot"
+    tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                disable_column_two python:request.set('disable_plone.rightcolumn',1);"/>
+</head>
+<body>	
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    <div id="homepage" 
+    	tal:define="p python:context.absolute_url();
+    			            plone_view context/@@plone;
+       						toLocalizedTime nocall:plone_view/toLocalizedTime">      	
+      <div class="row row-1">
+        <div class="col-xs-12 col-md-4">
+          <div tal:replace="structure python: view.carouselresult()">outer</div>        	
+        </div>          
+        <div class="col-xs-12 col-md-4 tabPortlet">
+		  <div role="tabpanel" class="portlet">
+  				<!-- Nav tabs -->
+  		    <ul  class="nav nav-tabs kuputab-selectors" role="tablist">
+    		  <li role="presentation" class="active">
+    		    <a href="#qidexinwen" aria-controls="qidexinwen" role="tab" data-toggle="tab"
+    						tal:attributes="data-js-target python:p + '/qidedongtai/qidexinwen/@@tableview'">齐德新闻</a>
+    		  </li>
+  			</ul>
+  			<!-- Tab panes start-->
+  			<div class="tab-content">
+   			  <div role="tabpanel" class="tab-pane active" id="qidexinwen">
+         		<ul class="tabcontent-lists">
+         		<tal:group tal:repeat="obj python:view.collection('qidexinwen',9)">    				
+    						<li class="portletItem"
+        					tal:define="oddrow repeat/obj/odd;ttl obj/Title"
+        					tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+        					<span>
+        						<a href="#"
+           					class="tile"
+           					tal:attributes="href obj/getURL;title python:ttl">
+           					<span tal:replace="python:view.cropTitle(ttl, 14)">
+             						Title
+            					</span>
+        						</a>
+        					</span>
+            			<span class="portletItemDetails"
+            				tal:content="python:toLocalizedTime(obj.created)">
+                		Date
+            			</span>        		
+    						</li>    				
+    					</tal:group>
+    					</ul>    	
+    				</div> 
+  			</div> <!--Tab panes end -->
+			</div>
+			</div> <!-- tabPortlet end-->
+			<div class="col-xs-12 col-md-4 tabPortlet">
+			<!-- 行业资讯-->
+				<div role="tabpanel" class="portlet">
+  				<ul  class="nav nav-tabs kuputab-selectors" role="tablist">
+    				<li role="presentation" class="active">
+    					<a href="#zuixingonggao" aria-controls="zuixingonggao" role="tab" data-toggle="tab"
+    						tal:attributes="data-js-target python:p + '/qidedongtai/qidegonggao/@@tableview'">最新公告</a>
+    				</li>
+  				</ul>
+  					<!-- Tab panes start-->
+  				<div class="tab-content">
+   				<div role="tabpanel" class="tab-pane active" id="zuixingonggao">
+					<ul class="tabcontent-lists">
+         		<tal:group tal:repeat="obj python:view.collection('zuixingonggao',9)">    				
+    						<li class="portletItem"
+        					tal:define="oddrow repeat/obj/odd;ttl obj/Title"
+        					tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+        					<span>
+        						<a href="#"
+           					class="tile"
+           					tal:attributes="href obj/getURL;title python:ttl">
+           					<span tal:replace="python:view.cropTitle(ttl, 14)">
+             						Title
+            					</span>
+        						</a>
+        					</span>
+            			<span class="portletItemDetails"
+            				tal:content="python:toLocalizedTime(obj.created)">
+                		Date
+            			</span>        		
+    						</li>    				
+    					</tal:group>
+    					</ul>     	
+    			</div>
+    		</div> <!--Tab panes end -->
+  			</div>  <!--portlet end -->				
+		</div>	<!--end col-3 of row-1 -->     
+       </div>  <!--end row-1 -->                          		
+     
+     </div>
+  </tal:main-macro>
+ </metal:main>
+ <!--
+ <metal:js fill-slot="javascript_bottom_slot">
+	<script tal:content="structure python:view.outputjs()"></script>	
+	</metal:js>
+	-->   
+</body>
+</html>

@@ -1,0 +1,42 @@
+.row{margin-bottom:6px}
+.row-1 .portlet{height:292px;overflow:hidden;margin-bottom:0;}
+
+.kuputab-container,.portlet{margin:0;border:1px solid #1663CC;border-top:none}
+
+
+.nav-tabs .col-xs-4{padding-left:0;padding-right:0}
+.nav-tabs li:first-child{padding-left:21px}
+.nav-tabs li:last-child{padding-right:21px}
+
+.navbar-right{margin-right:6px}
+.navbar-nav>li>a{font-weight:700}
+
+.no-padding{background-color:#dcecff}
+img.right{float:right}
+.portletItemDetails{float:right;margin-right:1em;color:#000}
+.nav-tabs>li.active>a:hover{cursor:pointer}
+.btn-active{border-bottom:medium none;border-left:medium none;border-right:medium none;border-radius:4px 4px 0 0;font-size:16px;font-weight:500;margin-left:6px;margin-top:6px;padding-top:3px;padding-bottom:0;color:#337AB7}
+
+
+.kuputab-selectors{position:relative;display:block;margin:0 0 -1em 0;padding:0;list-style-type:none;text-align:center}
+.kuputab-selectors li a{line-height:1.1;margin-top:8px;padding-top:5px;padding-right:6px;padding-left:6px;color:#fff;font-size:16px;font-weight:500;background-color:transparent;border:none}
+.tabPortlet .kuputab-container li.active a{border-bottom:none}
+.shortcutlink{font-size:12px;padding-right:0}
+.shortcutlink a{line-height:28px;height:28px;width:100px;text-align:center;display:inline-block;margin:1px 5px;font-weight:700}
+.qrcode{padding-left:0}
+
+.portletItem,.rolltext li{line-height:2em;margin-left:-24px;list-style:none outside url(http://images.315ok.org/xtshzz/images/red_point.jpg);border-bottom:1px dashed #b4b4b4}
+.tab-content{margin-top:14px;background-color:#fff}
+.tabcontent-lists .portletItem{margin-left:-16px}
+.kuputab-selectors,.portletHeader{background:url("http://images.315ok.org/qidejt/images/portlet_headerbg_9_41.jpg") repeat-x scroll 0 0 transparent;height:41px;margin:0}
+.nav-tabs{border-bottom:none}
+.navbar-inner{line-height:20px;font-size:14px;font-weight:700}
+.kuputab-selectors, .portletHeader {
+background: url("http://images.315ok.org/qidejt/images/portlet_headerbg_9_41.jpg") repeat-x scroll 0 0 transparent;
+height: 41px;
+margin: 0;
+padding:0;
+}
+
+.template-index-html #portal-breadcrumbs {display:none}
+.box .col-lg-12 {padding-left:0;padding-right:0}
