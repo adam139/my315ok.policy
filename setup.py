@@ -26,7 +26,8 @@ setup(name='my315ok.policy',
       install_requires=[
           'setuptools',
           'Products.CMFPlone',
-          'plone.app.testing',
+          'plone.app.dexterity',
+          'plone.app.contenttypes',
           'collective.monkeypatcher',
           'my315ok.products',      
                                                                        

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"      
+      i18n:domain="my315ok.policy">        
+<head>
+<metal:override fill-slot="top_slot"
+    tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                disable_column_two python:request.set('disable_plone.rightcolumn',1);"/>
+</head>
+<body>	
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    <div id="homepage" 
+    			tal:define="p python:context.absolute_url();
+    			            plone_view context/@@plone;
+       						toLocalizedTime nocall:plone_view/toLocalizedTime">      	
+       <div class="row row-1">
+         <div class="col-xs-12 col-md-4">
+         	<div tal:replace="structure python: view.carouselresult()">outer</div>        	
+         </div>          
+         <div class="col-xs-12 col-md-8 tabPortlet">
+				<div role="tabpanel" class="kuputab-container">
+  				<!-- Nav tabs -->
+  				<ul  class="nav nav-tabs kuputab-selectors row" role="tablist">
+    				<li role="presentation" class="active col-xs-4">
+    					<a href="#tongzhi" aria-controls="tongzhi" role="tab" data-toggle="tab"
+    						tal:attributes="data-js-target python:p + '/xinxigongkai/tongzhigonggao/@@tableview'">通知公告</a>
+    				</li>
+    				<li role="presentation" class="col-xs-4">
+    					<a href="#fengcai" aria-controls="fengcai" role="tab" data-toggle="tab"
+    						tal:attributes="data-js-target python:p + '/xinwenzhongxin/shehuizuzhifengcai/@@tableview'">社团风采</a>
+    				</li>
+    				<li role="presentation" class="col-xs-4">
+    					<a href="#work" aria-controls="work" role="tab" data-toggle="tab"
+    						tal:attributes="data-js-target python:p + '/xinwenzhongxin/guanligongzuodongtai/@@tableview'">工作动态</a></li>
+  				</ul>
+  					<!-- Tab panes start-->
+  				<div class="tab-content">
+   				<div role="tabpanel" class="tab-pane active" id="tongzhi">
+         		<ul class="tabcontent-lists">
+         		<tal:group tal:repeat="obj python:view.collection('tongzhigonggao',7)">    				
+    						<li class="portletItem"
+        					tal:define="oddrow repeat/obj/odd;ttl obj/Title"
+        					tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+        					<span>
+        						<a href="#"
+           					class="tile"
+           					tal:attributes="href obj/getURL;title python:ttl">
+           					<span tal:replace="python:view.cropTitle(ttl, 14)">
+             						Title
+            					</span>
+        						</a>
+        					</span>
+            			<span class="portletItemDetails"
+            				tal:content="python:toLocalizedTime(obj.created)">
+                		Date
+            			</span>        		
+    						</li>    				
+    					</tal:group>
+    					</ul>    	
+    				</div>
+    			<div role="tabpanel" class="tab-pane" id="fengcai">
+         	<ul class="tabcontent-lists">    	
+         	<tal:group tal:repeat="obj python:view.collection('shehuizuzhidongtai',7)">
+    				<li class="portletItem"
+        		tal:define="oddrow repeat/obj/odd;ttl obj/Title"
+        		tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+        		<span>
+        		<a href="#"
+           	class="tile"
+           	tal:attributes="href obj/getURL;title python:ttl">
+           	<span tal:replace="python:view.cropTitle(ttl, 14)">
+             Title
+            </span>
+        		</a>
+        		</span>
+            <span class="portletItemDetails"
+            	tal:content="python:toLocalizedTime(obj.created )">
+                Date
+            </span>        		
+    				</li> 
+    				</tal:group>
+    				</ul>    				    	
+    			</div>
+    			<div role="tabpanel" class="tab-pane" id="work">
+         	<ul class="tabcontent-lists">    	
+         	<tal:group tal:repeat="obj python:view.collection('gongzuodongtai',7)">
+    				<li class="portletItem"
+        		tal:define="oddrow repeat/obj/odd;ttl obj/Title"
+        		tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+        		<span>
+        		<a href="#"
+           	class="tile"
+           	tal:attributes="href obj/getURL;title python:ttl">
+           	<span tal:replace="python:view.cropTitle(ttl, 14)">
+             Title
+            </span>
+        		</a>
+        		</span>
+            <span class="portletItemDetails"
+            	tal:content="python:toLocalizedTime(obj.created )">
+                Date
+            </span>        		
+    				</li> 
+    			</tal:group>
+    			</ul>    			     	
+    		</div>
+  			</div> <!--Tab panes end -->
+			</div>
+			</div> <!-- tabPortlet end-->			
+     	</div>    
+     </div>
+  </tal:main-macro>
+ </metal:main>
+ <!--
+ <metal:js fill-slot="javascript_bottom_slot">
+	<script tal:content="structure python:view.outputjs()"></script>	
+	</metal:js>
+	-->   
+</body>
+</html>

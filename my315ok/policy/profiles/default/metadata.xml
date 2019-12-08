@@ -1,8 +1,8 @@
 <metadata>
     <version>100</version>
     <dependencies>
-      
-        <dependency>profile-my315ok.products:default</dependency>        
-              
+        <dependency>profile-plone.app.dexterity:default</dependency> 
+        <dependency>profile-plone.app.contenttypes:default</dependency>      
+        <dependency>profile-my315ok.products:default</dependency>                     
     </dependencies>
 </metadata>
