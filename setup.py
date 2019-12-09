@@ -25,6 +25,7 @@ setup(name='my315ok.policy',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'bbcode',
           'Products.CMFPlone',
           'plone.app.dexterity',
           'plone.app.contenttypes',

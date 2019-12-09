@@ -1,6 +1,7 @@
 #-*- coding: UTF-8 -*-
 from zope.site.hooks import getSite
 import datetime
+import bbcode
 from Products.CMFCore.utils import getToolByName
 from plone.dexterity.utils import createContentInContainer
 from plone.app.textfield.value import RichTextValue
@@ -26,8 +27,13 @@ def CreateDocEvent(event):
         item.title = event.title
         item.description = event.description
         text = event.text
+#         import pdb
+#         pdb.set_trace()
         if isinstance(text,str):text = text.decode("utf-8")
-#         item.text = RichTextValue(text,'text/plain','text/html')
+        html = bbcode.render_html(text)
+        html = html.replace("<br />\<br />","<br />")
+#         if isinstance(text,str):html = html.decode("utf-8")
+        item.text = RichTextValue(html,'text/plain','text/html')
         createdtime = event.createdtime
         if isinstance(createdtime,str) and '-' in createdtime:
             datearray = createdtime.split('-')
