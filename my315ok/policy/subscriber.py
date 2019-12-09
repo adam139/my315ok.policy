@@ -12,15 +12,20 @@ def CreateDocEvent(event):
     """this event be fired by """
     site = getSite()     
     catalog = getToolByName(site,'portal_catalog')
+    wf = getToolByName(site, 'portal_workflow')
 #     return
     try:
         newest = catalog.unrestrictedSearchResults({'object_provides': IBlogfolder.__identifier__})
     except:
         return     
     if not bool(newest):
-        blogfolder =createContentInContainer(site,"my315ok.policy.blogfolder",checkConstraints=False,id="blogfolder")
+        blogfolder =createContentInContainer(site,"my315ok.policy.blogfolder",
+                                             checkConstraints=False,
+                                             id="blogfolder",
+                                             title=u"博客")
     else:
         blogfolder = newest[0].getObject()
+    wf.doActionFor(blogfolder, 'publish', comment='publish' )
     docid = event.id        
     try:
         item =createContentInContainer(blogfolder,"my315ok.policy.blog",checkConstraints=False,id=docid)
@@ -33,7 +38,7 @@ def CreateDocEvent(event):
         html = bbcode.render_html(text)
         html = html.replace("<br />\<br />","<br />")
 #         if isinstance(text,str):html = html.decode("utf-8")
-        item.text = RichTextValue(html,'text/plain','text/html')
+        item.text = RichTextValue(html,'text/html','text/html')
         createdtime = event.createdtime
         if isinstance(createdtime,str) and '-' in createdtime:
             datearray = createdtime.split('-')
@@ -45,7 +50,10 @@ def CreateDocEvent(event):
         else:
             # is timestamp
             ct = datetime.datetime.fromtimestamp(int(createdtime))
-            item.creation_date = ct                    
+            ct = ct.strftime("%Y-%m-%d, %H:%M:%S")
+            item.creation_date = ct
+            item.setModificationDate(ct)                           
+        wf.doActionFor(item, 'publish', comment='publish')
         item.reindexObject()
         return                    
     except:
