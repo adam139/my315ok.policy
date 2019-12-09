@@ -3,21 +3,74 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="my315ok.policy">
 
-	
+	<include package="plone.app.contentmenu" />
+		
 	<!-- data import/export-->
     <include package="Products.CMFCore" file="permissions.zcml"
         xmlns:zcml="http://namespaces.zope.org/zcml"
         zcml:condition="have plone-41" />
 <!--
+      layer="my315ok.theme.interfaces.IThemeSpecific" 
+                  
    <browser:page
       for="Products.CMFCore.interfaces.ISiteRoot"
       name="index.html"
       class=".homepage.FrontpageView"
-      permission="zope.Public"
-      layer="my315ok.theme.interfaces.IThemeSpecific"       
+      permission="zope.Public"      
       template="templates/homepage.pt"
    />
- -->  
+ --> 
+  <!-- Register static resource directory -->
+	<browser:resourceDirectory
+  		name="my315ok.policy"
+  		directory="static" />
+   
+   <browser:page
+      for="my315ok.policy.contents.blog.IBlog"
+      name="base_view"
+      class=".contents_view.BlogView"
+      permission="zope.Public"      
+      template="templates/blog_view.pt"
+   />  		    
+    <browser:page
+        name="sysajax_listings"
+        template="templates/sysajax_listings_novocabulary.pt"
+        for="*"
+        permission="zope.Public"
+        class=".ajax_listing.sysAjaxListingView"
+        menu="plone_displayviews"
+        title="system Ajax view"/>      
+ <!--   
+    <browser:page
+        name="ajax_listings"
+        template="templates/ajax_listings_novocabulary.pt"
+        for="my315ok.policy.contents.blogfolder.IBlogfolder"
+        permission="zope.Public"
+        class=".ajax_listing.ajaxListingView"
+        menu="plone_displayviews"
+        title="Ajax view"/>    
+-->
+    <browser:page
+        name="sysloadmore_tags"
+        for="*"
+        permission="zope2.View"
+        class=".ajax_listing.sysloadMore"
+        />
+
+    <browser:page
+        name="loadmore_tags"
+        for="*"
+        permission="zope2.View"
+        class=".ajax_listing.loadMore"
+        /> 
+
+    <browser:page
+        name="ajaxsearch"
+        for="*"
+        permission="zope2.View"
+        class=".ajax_listing.ajaxsearch"
+        />
+ 
    <browser:page
         name="blogsinout-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
