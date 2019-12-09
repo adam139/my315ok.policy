@@ -26,9 +26,10 @@ setup(name='my315ok.policy',
       install_requires=[
           'setuptools',
           'bbcode',
-          'Products.CMFPlone',
+          'plone.app.contentmenu',
           'plone.app.dexterity',
-          'plone.app.contenttypes',
+          'plone.app.textfield',
+#           'plone.app.contenttypes',
           'collective.monkeypatcher',
                                                                        
           # -*- Extra requirements: -*-
