@@ -30,7 +30,6 @@ setup(name='my315ok.policy',
           'plone.app.dexterity',
           'plone.app.contenttypes',
           'collective.monkeypatcher',
-          'my315ok.products',      
                                                                        
           # -*- Extra requirements: -*-
       ],
