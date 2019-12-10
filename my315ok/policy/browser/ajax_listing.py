@@ -183,6 +183,7 @@ class sysAjaxListingView(BrowserView):
         """
                 prefixing = fixprefix % (fixgroup,fixgroup)
             loopitem = self.getTagHtml(group,0,5)
+
             loopitem = "%s%s%s" % (prefixing,loopitem,postfix)
             out = "%s%s" % (out,loopitem)
         return out                                         
@@ -339,6 +340,7 @@ class ajaxsearch(BrowserView):
             origquery = searchview.getPathQuery()
         else:
             origquery = searchview.getPathQuery(objid = objid)
+
         origquery['sort_on'] = sortcolumn  
         origquery['sort_order'] = sortdirection                
  #模糊搜索       

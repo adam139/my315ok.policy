@@ -14,9 +14,9 @@ class Base(PloneSandboxLayer):
     def setUpZope(self, app, configurationContext):
         # Load ZCML
         import my315ok.policy
-#         import plone.app.contenttypes
+#         import Products.CMFPlone
         xmlconfig.file('configure.zcml', my315ok.policy, context=configurationContext)
-#         xmlconfig.file('configure.zcml', plone.app.contenttypes, context=configurationContext)
+#         xmlconfig.file('configure.zcml', Products.CMFPlone, context=configurationContext)
         
         # Install products that use an old-style initialize() function
 
@@ -28,7 +28,7 @@ class Base(PloneSandboxLayer):
         
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'my315ok.policy:default')
-#         applyProfile(portal, 'plone.app.contenttypes:default')
+#         applyProfile(portal, 'Products.CMFPlone:default')
 
 FIXTURE = Base()
 INTEGRATION_TESTING = IntegrationTesting(bases=(FIXTURE,), name="Base:Integration")

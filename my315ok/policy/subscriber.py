@@ -25,7 +25,9 @@ def CreateDocEvent(event):
                                              title=u"博客")
     else:
         blogfolder = newest[0].getObject()
+
     wf.doActionFor(blogfolder, 'publish', comment='publish' )
+    
     docid = event.id        
     try:
         item =createContentInContainer(blogfolder,"my315ok.policy.blog",checkConstraints=False,id=docid)

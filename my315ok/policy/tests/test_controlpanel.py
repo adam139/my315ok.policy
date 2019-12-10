@@ -31,9 +31,9 @@ class TestControlPanel(unittest.TestCase):
 
         transaction.commit()        
         # Open Plone's site setup
-        self.browser.open("%s/plone_control_panel" % portal.absolute_url())
+        self.browser.open("%s/plone_control_panel" % self.portal.absolute_url())
         
-        self.assertTrue('Blog In/Out' in browser.contents)
+        self.assertTrue('Blog In/Out' in self.browser.contents)
   
     def test_inoutview(self):
 

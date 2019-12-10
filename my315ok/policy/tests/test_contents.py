@@ -21,7 +21,14 @@ class Allcontents(unittest.TestCase):
                                                                        'text/html'
                                                                        )
                                         )
-                      
+        portal['folder'].invokeFactory('my315ok.policy.blog', 'blog',
+                                       title="title",
+                                       description=u"description",
+                                       text=RichTextValue(            u"here is rich text",
+                                                                       'text/plain',
+                                                                       'text/html'
+                                                                       )
+                                        )                      
 
         self.portal = portal
     
