@@ -18,6 +18,13 @@
       description="Installs the my315ok.policy package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
+  
+  <genericsetup:upgradeStep
+      title="import blog from mysql to plone"
+      description="import blog from mysql to plone."
+      source="1001"
+      destination="1002"
+      handler="xtcs.policy.migration.import_contents"
+      profile="xtcs.policy:default"/>
   
 </configure>
