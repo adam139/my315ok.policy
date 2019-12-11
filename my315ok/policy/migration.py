@@ -39,6 +39,6 @@ def import_contents(context):
             event.notify(CreateDocEvent(id,title,title,text,createdtime))
         except (AttributeError, ValueError), err:
             continue
-        return        
+    return        
 
                         
