@@ -33,7 +33,7 @@ def CreateDocEvent(event):
         item.title = event.title
         item.description = event.description
         text = event.text
-        if isinstance(text,str):text = text.decode("utf-8")
+#         if isinstance(text,str):text = text.decode("utf-8")
         html = bbcode.render_html(text)
         html = html.replace("<br />\<br />","<br />")
         item.text = RichTextValue(html,'text/html','text/html')
@@ -50,7 +50,8 @@ def CreateDocEvent(event):
             ct = datetime.datetime.fromtimestamp(int(createdtime))
             ct = ct.strftime("%Y-%m-%d, %H:%M:%S")
             item.creation_date = ct
-            item.setModificationDate(ct)                           
+            item.setModificationDate(ct)
+            item.setEffectiveDate(ct)                           
         review_state = wf.getInfoFor(item, 'review_state')
         if review_state =="private":
             wf.doActionFor(item, 'publish', comment='publish')
