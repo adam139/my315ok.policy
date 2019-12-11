@@ -29,7 +29,7 @@ def import_contents(context):
             rs = con.execute(stm)
         return rs.fetchall()
     
-    recorders = query({"size":2,"offset":100})
+    recorders = query({"size":2,"offset":103})
     for j in recorders:
         id = str(j[0])
         title = safe_unicode(j[1])               
@@ -38,7 +38,7 @@ def import_contents(context):
         try:
             event.notify(CreateDocEvent(id,title,title,text,createdtime))
         except (AttributeError, ValueError), err:
-            raise("some errors raise")
+            continue
         return        
 
                         
