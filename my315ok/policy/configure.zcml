@@ -24,7 +24,7 @@
       description="import blog from mysql to plone."
       source="1001"
       destination="1002"
-      handler="xtcs.policy.migration.import_contents"
-      profile="xtcs.policy:default"/>
+      handler="my315ok.policy.migration.import_contents"
+      profile="my315ok.policy:default"/>
   
 </configure>
