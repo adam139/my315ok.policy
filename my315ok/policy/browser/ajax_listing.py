@@ -209,21 +209,28 @@ class sysAjaxListingView(BrowserView):
             sview = None
         return  sview is not None       
         
-    def getPathQuery(self,objid=None):
+    def getPathQuery(self,objid=None,justchildrens=True):
  
-        """返回 all organizations
+        """返回 all organizations  catalog(path={'query': folder_path, 'depth': 1})
+
         """
         query = {}       
         path = "/".join(self.context.getPhysicalPath())
-        if objid == None or objid == '':            
-            query['path'] = path
-        else:
+        if justchildrens:
+            pathdic = {'depth':1}
+            pathdic['query'] = path
+            query['path'] = pathdic            
+        elif bool(objid):
             query2 = {}
             query2['id'] = objid
             bn = self.catalog()(query2)
             if len(bn) >=1:
                 path = bn[0].getPath()
-                query['path'] = path                              
+                query['path'] = path
+            else:
+                query['path'] = path                                             
+        else:
+            query['path'] = path                             
         return query
 #任务类型属性：分析/设计/实验/仿真/培训          
     def getTaskType(self,typekey):
