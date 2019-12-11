@@ -37,7 +37,7 @@ def import_contents(context):
         createdtime = j[3]               
         try:
             event.notify(CreateDocEvent(id,title,title,text,createdtime))
-        except (AttributeError, ValueError), err:
+        except:
             continue
     return        
 
