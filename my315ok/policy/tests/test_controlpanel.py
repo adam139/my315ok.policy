@@ -9,10 +9,12 @@ from my315ok.policy.testing import FUNCTIONAL_TESTING
 from my315ok.policy.browser.datainout import data_PROPERTIES
 from my315ok.policy import Session,engine
 from sqlalchemy import create_engine, Table, MetaData
-from sqlalchemy.sql import select       
+from sqlalchemy.sql import select, asc, desc       
 from zope import event
 from Products.CMFPlone.utils import safe_unicode
+from Products.CMFCore.utils import getToolByName
 from my315ok.policy.events import CreateDocEvent
+from my315ok.policy.contents.blog import IBlog
 import io
 import os.path
 import transaction
@@ -131,6 +133,11 @@ class TestControlPanel(unittest.TestCase):
         readers = csv.reader(open(file_path, 'rU'),delimiter='^',dialect=csv.excel_tab)
         self.importData(readers)
 
+    def IdIsExist(self,Id):
+        catalog = getToolByName(self.portal, "portal_catalog")
+        brains = catalog(object_provides=IBlog.__identifier__,id=Id) 
+        return bool(brains)
+
     def query(self,kwargs):
         """分页查询
         """
@@ -140,17 +147,18 @@ class TestControlPanel(unittest.TestCase):
             meta = MetaData(engine)
             blogs = Table('plone_forum_post', meta, autoload=True)
             stm = select([blogs.c.pid, blogs.c.subject, blogs.c.message, blogs.c.dateline])\
-            .where(blogs.c.subject !=u"").limit(size).offset(offset)
+            .where(blogs.c.subject !=u"").order_by(desc(blogs.c.pid)).limit(size).offset(offset)
             rs = con.execute(stm)
         return rs.fetchall()
         
     def test_load_fromdb(self):
         
-        recorders = self.query({"size":2,"offset":108})
+        recorders = self.query({"size":3,"offset":3})
         import pdb
         pdb.set_trace()
         for j in recorders:
             id = str(j[0])
+            if self.IdIsExist(id):continue
             title = safe_unicode(j[1])               
             text = safe_unicode(j[2])
             createdtime = j[3]               
@@ -159,6 +167,7 @@ class TestControlPanel(unittest.TestCase):
             except (AttributeError, ValueError), err:
 #                     logging.exception(err)
                 raise("some errors raise")
-            return
+        self.assertEqual(self.portal['blogfolder'].id,'blogfolder')
+#         return
             
        
