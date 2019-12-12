@@ -36,6 +36,8 @@ def CreateDocEvent(event):
 #         if isinstance(text,str):text = text.decode("utf-8")
         html = bbcode.render_html(text)
         html = html.replace("<br />\<br />","<br />")
+        html = html.replace("<code>","<pre>")
+        html = html.replace("</code>","</pre>")
         item.text = RichTextValue(html,'text/html','text/html')
         createdtime = event.createdtime
         if isinstance(createdtime,str) and '-' in createdtime:
