@@ -9,6 +9,7 @@
 <metal:content-core fill-slot="content-core">
 <metal:content-core define-macro="content-core"
                     tal:define="toc context/table_of_contents|nothing;">
+  <ul id="subject" tal:condition="tags" tal:define="tags python:view.getags()" tal:content="structure python:tags" />
   <div id="parent-fieldname-text"
       tal:condition="context/text"
       tal:content="structure python:context.text.output_relative_to(view.context)"
