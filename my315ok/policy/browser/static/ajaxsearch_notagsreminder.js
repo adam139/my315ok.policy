@@ -301,13 +301,21 @@ function createStringSearch(d, a, c, g,m) {
 $(document).ready(function(){
 // read query string
 // Getting URL var by its nam
-    var byName = $.getUrlVar('orgname');
+    var byName = $.getUrlVar('subject');
     if (byName === undefined || byName == null || byName === "") {
                searchEvent();
     } else {
-               var byName2 = decodeURIComponent(byName);
-               $("#searchKeyword").val(byName2);    
-               searchEvent();
+                    var byName2 = decodeURIComponent(byName);
+                    $("#no-category li").find(".over").removeClass("over");
+                    //$(this).parent().parent().find(".over").removeClass("over");
+                    var newval = $("#no-category li").find("input").attr("data-category") + byName2;
+                    $("#no-category li").find("input").attr("value",newval);
+                    $("#no-category .all").find("span").addClass("over"); 
+                    //$(this).addClass("over");                    
+                    $("#tagSearch").attr("value",newval );
+                    //$(this).parent().parent().addClass('running');
+                    searchEvent();
+                    //$(".running").removeClass('running');
     }
 	// click search button
 	$("#search").on("click","button",function(){ searchEvent();});
