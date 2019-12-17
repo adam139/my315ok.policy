@@ -380,7 +380,6 @@ $(document).ready(function () {
     }
     return false;
   });
-
   // sort operation
   $("#eventListSort").on("click", "a", function () {
     $("#solrSortColumn").attr("value", $(this).attr("data-name"));
