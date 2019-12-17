@@ -169,9 +169,9 @@ class sysAjaxListingView(BrowserView):
             if group != "":                
                 prefixing = prefix % (group,group)
             else:
-                fixgroup = u"未分类".encode('utf-8')
+                fixgroup = u"按标签".encode('utf-8')
                 fixprefix = """
-                    <ul class="row tagSelectSearch list-inline">                    
+                    <ul class="row tagSelectSearch list-inline" id="no-category">                    
                     <li class="title">%s：</li>
                     <li class="hidden">
                         <input type="hidden" value="0" class="taggroup" data-category="%s-">                            
@@ -362,10 +362,10 @@ class ajaxsearch(BrowserView):
         tag = set(tag)
         tag = list(tag)
         all = u"所有".encode("utf-8")
-        unclass = u"未分类".encode("utf-8")        
+        unclass = u"按标签".encode("utf-8")        
 # filter contain "u'所有'"
         tag = filter(lambda x: all not in x, tag)
-# recover un-category tag (remove:u"未分类-")
+# recover un-category tag (remove:u"按标签-")
         def recovery(value):
             if unclass not in value:return value
             return value.split('-')[1]
